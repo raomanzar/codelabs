@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useContextFunc } from "../store/context.jsx";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const UserList = ({ newUser }) => {
-  const userList = useContextFunc();
-  const [data, setData] = useState(userList);
+const UserList = () => {
+  const { usersList, newUser } = useContextFunc();
+  const [data, setData] = useState(usersList);
 
   const handleDelete = (id) => {
     const newArr = data.filter((item) => item.id !== id);

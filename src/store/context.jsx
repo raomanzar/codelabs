@@ -1,9 +1,11 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 const Context = createContext();
 
 const Store = ({ children }) => {
-  const users = [
+  const [newUser, setNewUser] = useState(null);
+
+  const usersList = [
     { id: 1, name: "Alice", age: 23 },
     { id: 2, name: "Bob", age: 27 },
     { id: 3, name: "Charlie", age: 21 },
@@ -11,7 +13,14 @@ const Store = ({ children }) => {
     { id: 5, name: "Eve", age: 25 },
   ];
 
-  return <Context.Provider value={users}>{children}</Context.Provider>;
+  const addNewUser = (user) => {
+    setNewUser(user);
+  };
+  return (
+    <Context.Provider value={{ usersList, addNewUser, newUser }}>
+      {children}
+    </Context.Provider>
+  );
 };
 
 export const useContextFunc = () => {

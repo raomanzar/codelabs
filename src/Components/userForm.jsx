@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useContextFunc } from "../store/context.jsx";
 
-const UserForm = ({ addUser }) => {
+const UserForm = () => {
+  const { addNewUser } = useContextFunc();
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
 
@@ -10,7 +12,7 @@ const UserForm = ({ addUser }) => {
       return alert("Please fill all fields");
     }
     const newUser = { name, age };
-    addUser(newUser);
+    addNewUser(newUser);
     setName("");
     setAge("");
   };
