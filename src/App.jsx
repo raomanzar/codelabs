@@ -9,10 +9,10 @@ function App() {
     setUser(value);
   };
   return (
-    <>
+    <div className="flex gap-7 items-center justify-center w-full ">
       <UserList newUser={user} />
       <UserForm addUser={addUserFunc} />
-    </>
+    </div>
   );
 }
 

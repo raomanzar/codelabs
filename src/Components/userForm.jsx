@@ -6,6 +6,9 @@ const UserForm = ({ addUser }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!name || !age) {
+      return alert("Please fill all fields");
+    }
     const newUser = { name, age };
     addUser(newUser);
     setName("");
@@ -13,22 +16,27 @@ const UserForm = ({ addUser }) => {
   };
   return (
     <>
-      <h1>Add User</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          value={name}
-          type="text"
-          placeholder="Name"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          value={age}
-          type="text"
-          placeholder="Age"
-          onChange={(e) => setAge(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <div className="bg-gray-300 p-5 rounded-lg flex flex-col gap-4 h-72">
+        {" "}
+        <h1>Add User</h1>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <input
+            className="p-2 rounded"
+            value={name}
+            type="text"
+            placeholder="Name"
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            className="p-2 rounded"
+            value={age}
+            type="text"
+            placeholder="Age"
+            onChange={(e) => setAge(e.target.value)}
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </>
   );
 };
