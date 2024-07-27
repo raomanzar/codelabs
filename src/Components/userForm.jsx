@@ -28,13 +28,15 @@ const UserForm = () => {
             type="text"
             placeholder="Name"
             onChange={(e) => setName(e.target.value)}
+            required
           />
           <input
             className="p-2 rounded"
             value={age}
-            type="text"
+            type="number"
             placeholder="Age"
             onChange={(e) => setAge(e.target.value)}
+            required
           />
           <button type="submit">Submit</button>
         </form>
