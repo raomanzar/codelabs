@@ -9,6 +9,7 @@ const UserList = () => {
   const { usersList, newUser } = useContextFunc();
   const [data, setData] = useState(usersList);
   const {
+    recordsPerPage,
     numbers,
     records,
     page,
@@ -16,6 +17,8 @@ const UserList = () => {
     handleCurrentPage,
     handleBackward,
   } = Pagination(data, 5);
+
+  const startIndex = (page - 1) * recordsPerPage;
 
   const handleDelete = (id) => {
     const newArr = data.filter((item) => item.id !== id);
@@ -47,14 +50,19 @@ const UserList = () => {
           }
           thead {
             border-radius: 10px 10px 0 0;
+             overflow: hidden;
           }
           tbody {
             border-radius: 0 0 10px 10px;
+            border: 1px solid red;
+             overflow: hidden;
           }
+         
           .active {
             background-color: #4A5568; 
             color: #F7FAFC; 
           }
+          
         `}
       </style>
 
@@ -64,18 +72,22 @@ const UserList = () => {
           <>
             <table>
               <thead className="bg-gray-300 text-white w-full font-bold">
-                <tr className="rounded w-full bg-gray-300">
+                <tr className="w-full bg-gray-300">
+                  <td className="py-2">N#</td>
                   <td className="py-2">ID</td>
                   <td className="py-2">Name</td>
                   <td className="py-2">Age</td>
                   <td></td>
                 </tr>
               </thead>
-              <tbody className="text-center rounded-b-lg border">
+              <tbody className="text-center">
                 {records.map((item, indx) => (
-                  <tr key={indx}>
+                  <tr key={item.id}>
+                    <td className="py-2">{startIndex + indx + 1}.</td>
                     <td className="py-2">{item.id}</td>
-                    <td className="py-2">{item.name}</td>
+                    <td className="py-2">
+                      {item.name[0].toUpperCase() + item.name.slice(1)}
+                    </td>
                     <td className="py-2">{item.age}</td>
                     <td>
                       <div className="py-1 hover:cursor-pointer hover:bg-red-400 rounded transition duration-300 ease-in-out w-1/2">
@@ -89,7 +101,7 @@ const UserList = () => {
             <div className="flex justify-center w-full mt-4">
               <ChevronLeftIcon
                 onClick={handleBackward}
-                className="rounded-full hover:cursor-pointer hover:bg-gray-500 hover:text-gray-100"
+                className="rounded-full hover:cursor-pointer hover:bg-gray-500 hover:text-gray-100 mx-1"
               />
               {numbers.map((value, indx) => (
                 <a
@@ -104,7 +116,7 @@ const UserList = () => {
               ))}
               <ChevronRightIcon
                 onClick={handleForward}
-                className="rounded-full hover:cursor-pointer hover:bg-gray-500 hover:text-gray-100"
+                className="rounded-full hover:cursor-pointer hover:bg-gray-500 hover:text-gray-100 mx-1"
               />
             </div>
           </>

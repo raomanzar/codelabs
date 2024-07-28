@@ -26,6 +26,7 @@ const Pagination = (data, perPageRecords) => {
   };
 
   return {
+    recordsPerPage,
     numbers,
     records,
     page,
