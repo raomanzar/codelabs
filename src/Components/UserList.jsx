@@ -27,7 +27,7 @@ const UserList = () => {
 
   const addNewUser = () => {
     setData((prev) => [...prev, { ...newUser, id: data.length + 1 }]);
-    alert("New user has been added.");
+    alert("Confirmation for Adding User...");
   };
 
   useEffect(() => {

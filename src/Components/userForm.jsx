@@ -18,7 +18,7 @@ const UserForm = () => {
   };
   return (
     <>
-      <div className="bg-gray-300 p-5 rounded-lg flex flex-col gap-4 h-72">
+      <div className="bg-gray-300 p-5 rounded-lg flex flex-col gap-4 h-72 ">
         {" "}
         <h1>Add User</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
